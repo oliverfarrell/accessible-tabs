@@ -5,6 +5,12 @@ var Tabs = (function () {
   };
 
 
+  /**
+   * Loop through all the elements that match the selector.
+   *
+   * @param {Object} selector
+   * @param {Function} fn
+   */
   var _forEachElement = function (selector, fn) {
 
     var elements = selector;
@@ -14,6 +20,13 @@ var Tabs = (function () {
   };
 
 
+  /**
+   * Add an event listener to an element
+   *
+   * @param {Object} el
+   * @param {String} eventName
+   * @param {Function} handler
+   */
   var _addEventListener = function (el, eventName, handler) {
 
     if (el.addEventListener) {
@@ -27,6 +40,11 @@ var Tabs = (function () {
   };
 
 
+  /**
+   * Return the next element
+   *
+   * @param {Object} el
+   */
   var nextElementSibling = function (el) {
 
     do { el = el.nextSibling; } while ( el && el.nodeType !== 1 );
@@ -35,6 +53,11 @@ var Tabs = (function () {
   };
 
 
+  /**
+   * Return the previous element
+   *
+   * @param {Object} el
+   */
   var previousElementSibling = function (el) {
 
     do { el = el.previousSibling; } while ( el && el.nodeType !== 1 );
@@ -43,28 +66,44 @@ var Tabs = (function () {
   };
 
 
-  var _showTab = function (tab, count) {
+  /**
+   * Show a tab panel
+   *
+   * @param {Object} tabGroup
+   * @param {Integer} tabId
+   */
+  var _showTabPanel = function (tabGroup, tabId) {
 
-    var tabs = tab.querySelectorAll('[role="tab"]'),
-        selectedTab = tab.querySelector('#tab-' + count),
-        tabPanel = tab.querySelector('#panel-' + count);
+    var tabs = tabGroup.querySelectorAll('[role="tab"]'),
+        selectedTab = tabGroup.querySelector('#tab-' + tabId),
+        tabPanel = tabGroup.querySelector('#panel-' + tabId);
 
-    _hideTabs(tab, tabs);
+    // hide all other tab panels in the tab group
+    _hideTabPanels(tabGroup, tabs);
 
+    // change the `aria-` states of the tab and panel
     selectedTab.setAttribute('aria-selected', true);
     tabPanel.setAttribute('aria-hidden', false);
 
   };
 
 
-  var _hideTabs = function (tab, tabs) {
+  /**
+   * Hide tab panels
+   *
+   * @param {Object} tabGroup
+   * @param {object} tabGroupTabs
+   */
+  var _hideTabPanels = function (tabGroup, tabGroupTabs) {
 
     var tabsPanels = tab.querySelectorAll('[role="tabpanel"]');
 
-    _forEachElement(tabs, function(el, i) {
+    // change the `aria-` states of the tabs
+    _forEachElement(tabGroupTabs, function(el, i) {
       el.setAttribute('aria-selected', false);
     });
 
+    // change the `aria-` states of the panel
     _forEachElement(tabsPanels, function(el, i) {
       el.setAttribute('aria-hidden', true);
     });
@@ -72,6 +111,11 @@ var Tabs = (function () {
   };
 
 
+  /**
+   * Make all tabs accessible by adding `aria-` attributes
+   *
+   * @param {Object} el
+   */
   var _makeAccessible = function (el) {
 
     var tabsList = el.querySelector('ul'),
@@ -79,13 +123,15 @@ var Tabs = (function () {
         tabListLinks = tabsList.querySelectorAll('a'),
         tabPanels = el.querySelectorAll('div');
 
-
+    // apply an `aria-role` to the `<ul>`
     tabsList.setAttribute('role', 'tablist');
 
+    // apply an `aria-role` to the `<li>`
     _forEachElement(tabListItems, function(el, i) {
       el.setAttribute('role', 'presentation');
     });
 
+    // apply `aria-` attributes to `<a>`
     _forEachElement(tabListLinks, function(el, i) {
       el.setAttribute('href', '');
       el.setAttribute('id', 'tab-' + i);
@@ -93,17 +139,20 @@ var Tabs = (function () {
       el.setAttribute('role', 'tab');
       el.setAttribute('aria-controls', 'panel-' + i);
 
+      // if it's the first tab it's already active
       if(i === 0)
         el.setAttribute('aria-selected', true);
       else
         el.setAttribute('aria-selected', false);
     });
 
+    // apply `aria-` attributes to `<div>`
     _forEachElement(tabPanels, function(el, i) {
       el.setAttribute('id', 'panel-' + i);
       el.setAttribute('role', 'tabpanel');
       el.setAttribute('aria-labeledby', 'tab-' + i);
 
+      // if it's the first panel it's already active
       if(i === 0)
         el.setAttribute('aria-hidden', false);
       else
@@ -126,12 +175,12 @@ var Tabs = (function () {
 
       _forEachElement(tabsList, function(el, i) {
         _addEventListener(el, 'click', function(e) {
-          _showTab(tab, el.dataset.tab);
+          _showTabPanel(tab, el.dataset.tab);
           e.preventDefault();
         });
 
         _addEventListener(el, 'focus', function() {
-          _showTab(tab, el.dataset.tab);
+          _showTabPanel(tab, el.dataset.tab);
         });
 
         _addEventListener(el, 'keydown', function(e) {
