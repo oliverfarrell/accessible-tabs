@@ -27,6 +27,22 @@ var Tabs = (function () {
   };
 
 
+  var nextElementSibling = function (el) {
+
+    do { el = el.nextSibling; } while ( el && el.nodeType !== 1 );
+    return el;
+
+  };
+
+
+  var previousElementSibling = function (el) {
+
+    do { el = el.previousSibling; } while ( el && el.nodeType !== 1 );
+    return el;
+
+  };
+
+
   var _showTab = function (tab, count) {
 
     var tabs = tab.querySelectorAll('[role="tab"]'),
@@ -71,6 +87,7 @@ var Tabs = (function () {
     });
 
     _forEachElement(tabListLinks, function(el, i) {
+      el.setAttribute('href', '');
       el.setAttribute('id', 'tab-' + i);
       el.setAttribute('data-tab', i);
       el.setAttribute('role', 'tab');
@@ -108,8 +125,32 @@ var Tabs = (function () {
 
 
       _forEachElement(tabsList, function(el, i) {
-        _addEventListener(el, 'click', function() {
+        _addEventListener(el, 'click', function(e) {
           _showTab(tab, el.dataset.tab);
+          e.preventDefault();
+        });
+
+        _addEventListener(el, 'focus', function() {
+          _showTab(tab, el.dataset.tab);
+        });
+
+        _addEventListener(el, 'keydown', function(e) {
+          var active = document.activeElement;
+
+          if(e.which === 37) {
+            var prevTab = previousElementSibling(active.parentNode);
+
+            if(prevTab) {
+              prevTab.querySelector('a').focus();
+            }
+          } else if(e.which === 39) {
+            var nextTab = nextElementSibling(active.parentNode);
+
+            if(nextTab) {
+              nextTab.querySelector('a').focus();
+            }
+          }
+
         });
       });
 
