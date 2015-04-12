@@ -121,7 +121,7 @@ var Tabs = (function () {
 
   return {
     init: init
-  }
+  };
 
 
 })();
