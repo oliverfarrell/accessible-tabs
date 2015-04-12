@@ -75,8 +75,8 @@ var Tabs = (function () {
   var _showTabPanel = function (tabGroup, tabId) {
 
     var tabs = tabGroup.querySelectorAll('[role="tab"]'),
-        selectedTab = tabGroup.querySelector('#tab-' + tabId),
-        tabPanel = tabGroup.querySelector('#panel-' + tabId);
+        selectedTab = tabGroup.querySelector('[data-tab="' + tabId + '"'),
+        tabPanel = tabGroup.querySelector('[data-panel="' + tabId + '"');
 
     // hide all other tab panels in the tab group
     _hideTabPanels(tabGroup, tabs);
@@ -134,7 +134,6 @@ var Tabs = (function () {
     // apply `aria-` attributes to `<a>`
     _forEachElement(tabListLinks, function(el, i) {
       el.setAttribute('href', '');
-      el.setAttribute('id', 'tab-' + i);
       el.setAttribute('data-tab', i);
       el.setAttribute('role', 'tab');
       el.setAttribute('aria-controls', 'panel-' + i);
@@ -148,7 +147,7 @@ var Tabs = (function () {
 
     // apply `aria-` attributes to `<div>`
     _forEachElement(tabPanels, function(el, i) {
-      el.setAttribute('id', 'panel-' + i);
+      el.setAttribute('data-panel', i);
       el.setAttribute('role', 'tabpanel');
       el.setAttribute('aria-labeledby', 'tab-' + i);
 
