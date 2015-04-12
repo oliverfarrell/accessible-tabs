@@ -96,7 +96,7 @@ var Tabs = (function () {
    */
   var _hideTabPanels = function (tabGroup, tabGroupTabs) {
 
-    var tabsPanels = tab.querySelectorAll('[role="tabpanel"]');
+    var tabsPanels = tabGroup.querySelectorAll('[role="tabpanel"]');
 
     // change the `aria-` states of the tabs
     _forEachElement(tabGroupTabs, function(el, i) {
