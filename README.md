@@ -1,8 +1,8 @@
-# Accessible Tabs
+# Vanilla JavaScript Accessible Tabs
 
 [![Code Climate](https://codeclimate.com/github/oliverfarrell/accessible-tabs/badges/gpa.svg)](https://codeclimate.com/github/oliverfarrell/accessible-tabs) [![Build Status](https://travis-ci.org/oliverfarrell/accessible-tabs.svg)](https://travis-ci.org/oliverfarrell/accessible-tabs) [![Inline docs](http://inch-ci.org/github/oliverfarrell/accessible-tabs.svg?branch=master)](http://inch-ci.org/github/oliverfarrell/accessible-tabs)
 
-A JavaScript library that creates a tabs instance and adds ARIA attributes plus keyboard navigation to make them accessible.
+This JavaScript plugin provides accessible tab functionality and adds ARIA attributes to markup. Check out a demo at http://codepen.io/oliverfarrell/pen/VYoXJj
 
 ## Usage
 
