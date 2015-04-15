@@ -156,7 +156,7 @@ var Tabs = (function () {
 
   };
 
-  var init = function () {
+  var init = function (options) {
 
     // overwrite the default configuration
     for (var prop in options) {
@@ -180,13 +180,21 @@ var Tabs = (function () {
 
         // add a click event to the tab and show the respective tab
         _addEventListener(el, 'click', function(e) {
-          _showTabPanel(tab, el.dataset.tab);
-          e.preventDefault();
+          _showTabPanel(tab, el.getAttribute('data-tab'));
+
+          var evt = e || window.event;
+
+          if (evt.preventDefault) {
+            evt.preventDefault();
+          } else {
+            evt.returnValue = false;
+            evt.cancelBubble = true;
+          }
         });
 
         // add a :focus event and show the respective tab
         _addEventListener(el, 'focus', function() {
-          _showTabPanel(tab, el.dataset.tab);
+          _showTabPanel(tab, el.getAttribute('data-tab'));
         });
 
         // add a keydown event
