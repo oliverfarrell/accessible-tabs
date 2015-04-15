@@ -4,7 +4,6 @@ var Tabs = (function () {
     selector: document.querySelectorAll('.tabs')
   };
 
-
   /**
    * Loop through all the elements that match the selector.
    *
@@ -14,11 +13,11 @@ var Tabs = (function () {
   var _forEachElement = function (selector, fn) {
 
     var elements = selector;
-    for (var i = 0; i < elements.length; i++)
+    for (var i = 0; i < elements.length; i++) {
       fn(elements[i], i);
+    }
 
   };
-
 
   /**
    * Add an event listener to an element
@@ -32,13 +31,12 @@ var Tabs = (function () {
     if (el.addEventListener) {
       el.addEventListener(eventName, handler);
     } else {
-      el.attachEvent('on' + eventName, function(){
+      el.attachEvent('on' + eventName, function () {
         handler.call(el);
       });
     }
 
   };
-
 
   /**
    * Return the next element
@@ -47,11 +45,10 @@ var Tabs = (function () {
    */
   var nextElementSibling = function (el) {
 
-    do { el = el.nextSibling; } while ( el && el.nodeType !== 1 );
+    do { el = el.nextSibling; } while (el && el.nodeType !== 1);
     return el;
 
   };
-
 
   /**
    * Return the previous element
@@ -60,11 +57,10 @@ var Tabs = (function () {
    */
   var previousElementSibling = function (el) {
 
-    do { el = el.previousSibling; } while ( el && el.nodeType !== 1 );
+    do { el = el.previousSibling; } while (el && el.nodeType !== 1);
     return el;
 
   };
-
 
   /**
    * Show a tab panel
@@ -87,7 +83,6 @@ var Tabs = (function () {
 
   };
 
-
   /**
    * Hide tab panels
    *
@@ -109,7 +104,6 @@ var Tabs = (function () {
     });
 
   };
-
 
   /**
    * Make all tabs accessible by adding `aria-` attributes
@@ -139,10 +133,11 @@ var Tabs = (function () {
       el.setAttribute('aria-controls', 'panel-' + i);
 
       // if it's the first tab it's already active
-      if(i === 0)
+      if (i === 0) {
         el.setAttribute('aria-selected', true);
-      else
+      } else {
         el.setAttribute('aria-selected', false);
+      }
     });
 
     // apply `aria-` attributes to `<div>`
@@ -152,65 +147,79 @@ var Tabs = (function () {
       el.setAttribute('aria-labeledby', 'tab-' + i);
 
       // if it's the first panel it's already active
-      if(i === 0)
+      if (i === 0) {
         el.setAttribute('aria-hidden', false);
-      else
+      } else {
         el.setAttribute('aria-hidden', true);
+      }
     });
 
   };
 
-
   var init = function () {
 
+    // overwrite the default configuration
+    for (var prop in options) {
+      if (options.hasOwnProperty(prop)) {
+        config[prop] = options[prop];
+      }
+    }
+
+    // loop through all instances of the selector
     _forEachElement(config.selector, function(el, i) {
 
+      // apply all the accessibility stuff
       _makeAccessible(el);
 
       var tab = el,
           tabsList = tab.querySelectorAll('[role="tab"]'),
           tabPanels = tab.querySelectorAll('[role="tabpanel"]');
 
-
+      // loop through all instances of [role="tab"]
       _forEachElement(tabsList, function(el, i) {
+
+        // add a click event to the tab and show the respective tab
         _addEventListener(el, 'click', function(e) {
           _showTabPanel(tab, el.dataset.tab);
           e.preventDefault();
         });
 
+        // add a :focus event and show the respective tab
         _addEventListener(el, 'focus', function() {
           _showTabPanel(tab, el.dataset.tab);
         });
 
+        // add a keydown event
         _addEventListener(el, 'keydown', function(e) {
           var active = document.activeElement;
 
-          if(e.which === 37) {
+          // if left arrow show previous tab panel
+          if (e.which === 37) {
             var prevTab = previousElementSibling(active.parentNode);
 
-            if(prevTab) {
+            // alter focus to the same tab
+            if (prevTab) {
               prevTab.querySelector('a').focus();
             }
-          } else if(e.which === 39) {
+
+          // if right arrow show next tab panel
+          } else if (e.which === 39) {
             var nextTab = nextElementSibling(active.parentNode);
 
-            if(nextTab) {
+            // alter focus to the same tab
+            if (nextTab) {
               nextTab.querySelector('a').focus();
             }
           }
 
         });
       });
-
-
     });
 
   };
 
-
   return {
     init: init
   };
-
 
 })();
