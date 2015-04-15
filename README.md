@@ -36,3 +36,10 @@ Then add the tabs markup.
   </div>
 </div>
 ```
+
+# Brower Support
+* Chrome
+* Firefox
+* Safari
+* Opera
+* IE 8, 9, 10
