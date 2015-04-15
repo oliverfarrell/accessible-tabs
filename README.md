@@ -8,7 +8,7 @@ A JavaScript library that creates a tabs instance and adds ARIA attributes plus 
 
 Include the script and initialise the tabs library.
 ```javascript
-<script src="tabs.js"></script>
+<script src="tabs.min.js"></script>
 <script>
   Tabs.init();
 </script>
