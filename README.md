@@ -2,7 +2,7 @@
 
 [![Code Climate](https://codeclimate.com/github/oliverfarrell/accessible-tabs/badges/gpa.svg)](https://codeclimate.com/github/oliverfarrell/accessible-tabs) [![Build Status](https://travis-ci.org/oliverfarrell/accessible-tabs.svg)](https://travis-ci.org/oliverfarrell/accessible-tabs) [![Inline docs](http://inch-ci.org/github/oliverfarrell/accessible-tabs.svg?branch=master)](http://inch-ci.org/github/oliverfarrell/accessible-tabs)
 
-A JavaScript library that creates a tabs instances and adds ARIA attributes plus keyboard navigation.
+A JavaScript library that creates a tabs instance and adds ARIA attributes plus keyboard navigation to make them accessible.
 
 ## Usage
 
