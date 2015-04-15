@@ -1,0 +1,23 @@
+{
+  "name": "accessible-tabs",
+  "version": "1.0.0",
+  "homepage": "https://github.com/oliverfarrell/accessible-tabs",
+  "authors": [
+    "Oliver Farrell <oliver@oliverjfarrell.co.uk>"
+  ],
+  "description": "This JavaScript plugin provides accessible tab functionality and adds ARIA attributes to markup. ",
+  "main": "dist/tabs.min.js",
+  "keywords": [
+    "tabs",
+    "accessibility",
+    "front-end",
+    "a11y"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

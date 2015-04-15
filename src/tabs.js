@@ -121,12 +121,12 @@ var Tabs = (function () {
     tabsList.setAttribute('role', 'tablist');
 
     // apply an `aria-role` to the `<li>`
-    _forEachElement(tabListItems, function(el, i) {
+    _forEachElement(tabListItems, function (el, i) {
       el.setAttribute('role', 'presentation');
     });
 
     // apply `aria-` attributes to `<a>`
-    _forEachElement(tabListLinks, function(el, i) {
+    _forEachElement(tabListLinks, function (el, i) {
       el.setAttribute('href', '');
       el.setAttribute('data-tab', i);
       el.setAttribute('role', 'tab');
@@ -141,7 +141,7 @@ var Tabs = (function () {
     });
 
     // apply `aria-` attributes to `<div>`
-    _forEachElement(tabPanels, function(el, i) {
+    _forEachElement(tabPanels, function (el, i) {
       el.setAttribute('data-panel', i);
       el.setAttribute('role', 'tabpanel');
       el.setAttribute('aria-labeledby', 'tab-' + i);
@@ -166,7 +166,7 @@ var Tabs = (function () {
     }
 
     // loop through all instances of the selector
-    _forEachElement(config.selector, function(el, i) {
+    _forEachElement(config.selector, function (el, i) {
 
       // apply all the accessibility stuff
       _makeAccessible(el);
@@ -176,10 +176,10 @@ var Tabs = (function () {
           tabPanels = tab.querySelectorAll('[role="tabpanel"]');
 
       // loop through all instances of [role="tab"]
-      _forEachElement(tabsList, function(el, i) {
+      _forEachElement(tabsList, function (el, i) {
 
         // add a click event to the tab and show the respective tab
-        _addEventListener(el, 'click', function(e) {
+        _addEventListener(el, 'click', function (e) {
           _showTabPanel(tab, el.getAttribute('data-tab'));
 
           var evt = e || window.event;
@@ -198,7 +198,7 @@ var Tabs = (function () {
         });
 
         // add a keydown event
-        _addEventListener(el, 'keydown', function(e) {
+        _addEventListener(el, 'keydown', function (e) {
           var active = document.activeElement;
 
           // if left arrow show previous tab panel
