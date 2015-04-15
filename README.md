@@ -42,4 +42,4 @@ Then add the tabs markup.
 * Firefox
 * Safari
 * Opera
-* IE 8, 9, 10
+* IE 8, 9, 10, 11
