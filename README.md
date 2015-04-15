@@ -4,6 +4,9 @@
 
 This JavaScript plugin provides accessible tab functionality and adds ARIA attributes to markup. Check out a demo at http://codepen.io/oliverfarrell/pen/VYoXJj
 
+## Roadmap
+* Add an option to convert tabs to an accordion for mobile devices. Will need and additional option for specifiying the media query.
+
 ## Usage
 
 Include the script and initialise the tabs library.
@@ -37,7 +40,7 @@ Then add the tabs markup.
 </div>
 ```
 
-# Brower Support
+## Brower Support
 * Chrome
 * Firefox
 * Safari
