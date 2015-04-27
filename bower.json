@@ -5,7 +5,7 @@
   "authors": [
     "Oliver Farrell <oliver@oliverjfarrell.co.uk>"
   ],
-  "description": "This JavaScript plugin provides accessible tab functionality and adds ARIA attributes to markup. ",
+  "description": "This JavaScript plugin provides accessible tab functionality and adds ARIA attributes to markup.",
   "main": "dist/tabs.min.js",
   "keywords": [
     "tabs",

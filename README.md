@@ -2,15 +2,15 @@
 
 [![Code Climate](https://codeclimate.com/github/oliverfarrell/accessible-tabs/badges/gpa.svg)](https://codeclimate.com/github/oliverfarrell/accessible-tabs) [![Build Status](https://travis-ci.org/oliverfarrell/accessible-tabs.svg)](https://travis-ci.org/oliverfarrell/accessible-tabs) [![Inline docs](http://inch-ci.org/github/oliverfarrell/accessible-tabs.svg?branch=master)](http://inch-ci.org/github/oliverfarrell/accessible-tabs)
 
-This JavaScript plugin provides accessible tab functionality and adds ARIA attributes to markup. Check out a demo at http://codepen.io/oliverfarrell/pen/VYoXJj
+This JavaScript plugin provides accessible tab functionality and adds ARIA attributes to markup. Check out the demo at http://codepen.io/oliverfarrell/pen/VYoXJj
 
 ## Roadmap
-* Add an option to convert tabs to an accordion for mobile devices. Will need and additional option for specifiying the media query.
+* Add an option to convert tabs to an accordion for mobile devices. Will need an additional option for specifiying the media query.
 
 ## Usage
 
 Include the script and initialise the tabs library.
-```javascript
+```html
 <script src="tabs.min.js"></script>
 <script>
   Tabs.init();
@@ -45,4 +45,4 @@ Then add the tabs markup.
 * Firefox
 * Safari
 * Opera
-* IE 8, 9, 10, 11
+* IE 8+
