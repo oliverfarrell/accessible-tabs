@@ -144,7 +144,7 @@ var Tabs = (function () {
     _forEachElement(tabPanels, function (el, i) {
       el.setAttribute('data-panel', i);
       el.setAttribute('role', 'tabpanel');
-      el.setAttribute('aria-labeledby', 'tab-' + i);
+      el.setAttribute('aria-labelledby', 'tab-' + i);
 
       // if it's the first panel it's already active
       if (i === 0) {
